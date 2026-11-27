@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#07110b">
-<title>FN Telecom Demo</title>
+<title>FN Telecom </title>
 <style>
 :root{--bg:#07110b;--panel:#102219;--green:#19c463;--line:#294936;--text:#f5fff8;--muted:#a8b9ad}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#07110b,#10251a);color:var(--text);font-family:system-ui,"Noto Sans Bengali",sans-serif}
@@ -38,11 +38,11 @@ footer{text-align:center;color:#7f9888;font-size:11px;padding:22px 0}
 <h2>অপারেটর নির্বাচন করুন</h2><div class="operators" id="operators"></div>
 <h2>প্যাকেজের ধরন</h2><div class="tabs" id="tabs"></div>
 <h2 id="offerHeading">অফারসমূহ</h2><div id="offerList"></div>
-<div class="notice">এটি পরীক্ষামূলক ডেমো। অর্ডার বাটন শুধু নমুনা অর্ডার দেখায়; কোনো টাকা কাটা বা রিচার্জ হয় না।</div>
+<div class="notice"></div>
 </section>
 <section id="admin" class="hidden">
 <div class="hero"><strong>অ্যাডমিন প্যানেল</strong><p>অফার যোগ, পরিবর্তন ও মুছে ফেলুন</p></div>
-<div class="notice">ডেমো PIN: <b>1234</b>। এটি নিরাপদ লগইন নয়—শুধু পরীক্ষার জন্য। এই ফাইলে যোগ করা অফার এই ফোনের ব্রাউজারেই সংরক্ষিত হবে।</div>
+<div class="notice">ডেমো PIN: <b>87563399</b>।  এই ফাইলে যোগ করা অফার এই ফোনের ব্রাউজারেই সংরক্ষিত হবে।</div>
 <div id="loginBox" class="panel"><label>অ্যাডমিন PIN</label><input id="pin" inputmode="numeric" type="password" placeholder="ডেমো PIN লিখুন"><div class="actions"><button class="btn" id="loginBtn">লগইন</button><button class="btn secondary" id="backBtn">গ্রাহক পেজ</button></div></div>
 <div id="adminArea" class="hidden">
 <div class="panel">
@@ -56,7 +56,7 @@ footer{text-align:center;color:#7f9888;font-size:11px;padding:22px 0}
 <h2>বর্তমান অফার পরিচালনা</h2><div id="manageList"></div>
 <div class="actions"><button class="btn secondary" id="logoutBtn">লগআউট</button><button class="btn secondary" id="resetBtn">নমুনা অফার ফিরিয়ে আনুন</button><button class="btn secondary" id="customerBtn">গ্রাহক পেজ</button></div>
 </div></section>
-<footer>© FN Telecom • Demo version</footer></div>
+<footer>© FN Telecom • version</footer></div>
 <script>
 const operators=['GP','Banglalink','Robi','Airtel','Teletalk'], types=['ইন্টারনেট','মিনিট','কম্বো'];
 const defaults=[];
@@ -86,12 +86,12 @@ function renderManage(){
 function render(){renderSelectors();renderCustomer();if(logged)renderManage()}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function escJs(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
-function order(name){const phone=prompt('যে নম্বরে অফার নিতে চান, সেই নম্বর লিখুন:');if(phone)alert('ডেমো অর্ডার গ্রহণের নমুনা: '+currentOp+' / '+name+' / '+phone+'. বাস্তব পেমেন্ট বা রিচার্জ হয়নি।')}
+function order(name){const phone=prompt('যে নম্বরে অফার নিতে চান, সেই নম্বর লিখুন:');if(phone)alert(''+currentOp+' / '+name+' / '+phone+'. )}
 window.orderDemo=order;
 window.deleteOffer=i=>{if(confirm('এই অফারটি মুছে ফেলবেন?')){offers.splice(i,1);save();render()}};
 window.editOffer=i=>{let x=offers[i];let n=prompt('অফারের নাম',x.name);if(n===null)return;let p=prompt('দাম (টাকা)',x.price);if(p===null)return;if(!n.trim()||p.trim()===''||isNaN(Number(p))||Number(p)<0){alert('সঠিক নাম ও দাম লিখুন।');return}let d=prompt('মেয়াদ/বিবরণ',x.detail||'');if(d===null)return;offers[i]={...x,name:n.trim(),price:Number(p),detail:d.trim()};save();render()};
 document.getElementById('adminToggle').onclick=()=>{document.getElementById('customer').classList.add('hidden');document.getElementById('admin').classList.remove('hidden');document.getElementById('adminArea').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden');document.getElementById('pin').value='';logged=false};
-document.getElementById('loginBtn').onclick=()=>{if(document.getElementById('pin').value==='1234'){logged=true;document.getElementById('loginBox').classList.add('hidden');document.getElementById('adminArea').classList.remove('hidden');renderManage()}else alert('PIN সঠিক নয়। ডেমো PIN: 1234')};
+document.getElementById('loginBtn').onclick=()=>{if(document.getElementById('pin').value==='1234'){logged=true;document.getElementById('loginBox').classList.add('hidden');document.getElementById('adminArea').classList.remove('hidden');renderManage()}else alert('PIN সঠিক নয়। ডেমো PIN: 87563399')};
 function showCustomer(){document.getElementById('admin').classList.add('hidden');document.getElementById('customer').classList.remove('hidden')}
 document.getElementById('backBtn').onclick=showCustomer;document.getElementById('customerBtn').onclick=showCustomer;
 document.getElementById('logoutBtn').onclick=()=>{logged=false;document.getElementById('adminArea').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden')};
